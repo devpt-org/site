@@ -20,6 +20,7 @@ Instalar as dependências
 
 ```bash
     composer install
+    npm install
 ```
 
 Duplicar o ficheiro .env.example para .env e alterar os dados se necessário. 
@@ -50,3 +51,9 @@ Correr o servidor localmente
 
 No browser, abre o site localhost para veres a landing page do projeto. 
 Não te esqueças da porta que configurares.
+
+Para finalizar, na raiz do teu projeto no terminal corre o seguinte comando:
+
+```bash
+    npm run dev
+```
