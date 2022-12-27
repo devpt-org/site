@@ -43,7 +43,7 @@ laravel sail. Para teres o daemon a correr manualmente:
     dockerd
 ```
 
-Correr o servidor localmente
+Executar o Sail para executar todos os serviços necessários
 
 ```bash
     ./vendor/bin/sail up
