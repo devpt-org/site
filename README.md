@@ -4,7 +4,7 @@
 
 ## Correr Localmente
 
-Clonar o projeto na tua maquina
+Clonar o projeto na máquina
 
 ```bash
     git clone https://github.com/devpt-org/site.git
