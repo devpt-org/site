@@ -10,7 +10,7 @@ Clonar o projeto na máquina
     git clone https://github.com/devpt-org/site.git
 ```
 
-Ir para a diretoria do projeto
+Entrar na pasta do projeto
 
 ```bash
     cd site
