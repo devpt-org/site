@@ -49,10 +49,10 @@ Executar o Sail para executar todos os serviços necessários
     ./vendor/bin/sail up
 ```
 
-No browser, abre o site localhost para veres a landing page do projeto. 
-Não te esqueças da porta que configurares.
+Para abrir o projeto, no navegador abrir o endereço
+`http://localhost` (ou `http://localhost:PORTA onde PORTA corresponde à porta que possa ter sido configurado mais acima. Por pré-definição é a 80).
 
-Para finalizar, na raiz do teu projeto no terminal corre o seguinte comando:
+Para realizar a compilação em real-time dos recursos de JavaScript+CSS, executar o seguinte comando:
 
 ```bash
     npm run dev
