@@ -23,7 +23,7 @@ Instalar as dependências
     npm install
 ```
 
-Duplicar o ficheiro .env.example para .env e alterar os dados se necessário. 
+Duplicar o ficheiro `.env.example` para `.env` e alterar os dados se necessário.
 
 ```bash
     cp .env.example .env
