@@ -1,6 +1,7 @@
 <script setup>
 import {Head, Link} from '@inertiajs/inertia-vue3'
 import HeroLogo from '@/Components/HeroLogo.vue'
+import NavBar from '@/Components/NavBar/NavBar.vue'
 
 defineProps({
     canLogin: Boolean,
@@ -13,6 +14,7 @@ defineProps({
 <template>
     <Head title="devPT - Comunidade de Developers Portugueses"/>
 
+    <NavBar />
     <section class="flex items-center">
         <div>
             <HeroLogo class="max-w-[400px] lg:max-w-[800px]"/>
