@@ -1,13 +1,11 @@
 <script setup>
 import {Head, Link} from '@inertiajs/inertia-vue3'
 import HeroLogo from '@/Components/HeroLogo.vue'
+import HomepageBenefits from "@/Components/HomepageBenefits.vue";
 import NavBar from '@/Components/NavBar/NavBar.vue'
 
 defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
+    benefits: Object,
 })
 </script>
 
@@ -25,4 +23,8 @@ defineProps({
             <a class="btn text-white bg-blue-400 hover:bg-blue-600">Colabora</a>
         </div>
     </section>
+    <section>
+        <HomepageBenefits :benefits="benefits"/>
+    </section>
+
 </template>
