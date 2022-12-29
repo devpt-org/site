@@ -61,10 +61,10 @@ npm install
 
 Para abrir o projeto, no navegador abrir o endereço `http://localhost` ou `http://localhost:APP_PORT` se alteraste a `APP_PORT` no `.env`.
 
-Para realizar a compilação em real-time dos recursos de JavaScript+CSS, executar o seguinte comando:
+Para realizar a compilação em real-time (re-compila a cada alteração) dos recursos de JavaScript e CSS, executar:
 
 ```bash
-    npm run dev
+npm run dev
 ```
 
 ### FAQs
