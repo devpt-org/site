@@ -69,8 +69,7 @@ npm run dev
 
 *Recebo um erro que a porta está em uso.*
 
-Pára outros sites que tenhas a correr na porta 80, ou adiciona a propriedade APP_PORT no ficheiro `.env` 
-para indicar uma porta livre que deve ser usada pelo webserver do Sail. No exemplo mudamos para 8080.
+Para outros sites que estejam em execução na porta 80, adiciona a propriedade APP_PORT no ficheiro `.env` para indicar que porta livre que deve ser usada pelo webserver do Sail. No exemplo mudamos para 8080.
 ```.env
 APP_PORT=8080
 ```
