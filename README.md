@@ -7,9 +7,7 @@
 Este projeto está otimizado para trabalhar em Docker - suportado por Linux, MacOS e Windows (em WSL2).
 Funciona de outras formas, mas esta é a suportada pelo desenvolvimento neste repositório.
 
-Avançado: Como o Docker corre um pouco mais lento em MacOS e WSL2. Uma forma de poupar aqui algum tempo
-é usar o `npm` no sistema, e não dentro do Docker container. Assim, o "npm install" e "npm run dev" podem 
-ser corridos fora do container.
+Avançado: Como o Docker corre um pouco mais lento em MacOS e WSL2, uma forma de poupar algum tempo é usar o `npm` no sistema, e não dentro do Docker container. Assim, o `npm install` e `npm run dev` podem ser executados fora do container.
 
 ## Como correr o projeto em ambiente local
 
