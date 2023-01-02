@@ -35,7 +35,7 @@ cp .env.example .env
 ```
 
 Executar o Sail "up" para levantar os serviços necessários. Pode demorar alguns minutos, pois vai construir imagens se necessário.
-Vais ficar a ver o output dos serviços.
+Ficará visível o output dos serviços.
 ```bash
 ./vendor/bin/sail up
 ```
