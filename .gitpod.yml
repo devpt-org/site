@@ -7,7 +7,7 @@ tasks:
     init: docker run --rm \-u "$(id -u):$(id -g)" \-v "$(pwd):/app" -w /app \composer:2 \composer install --ignore-platform-reqs
 
   - name: Execute Laravel Sail
-    before: gp sync-await docker
+    init: gp sync-await composer
     command: ./vendor/bin/sail up
   
   - name: Run dev
