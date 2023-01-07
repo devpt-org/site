@@ -7,8 +7,8 @@ tasks:
     command: ./vendor/bin/sail up
   
   - name: Run dev
-  - before: composer install && npm install
-  - command: npm run dev
+    before: composer install && npm install
+    command: npm run dev
 
   #- name: Generate Laravel app key and storage symlink
   #  init: ./vendor/bin/sail bash
