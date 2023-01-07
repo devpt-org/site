@@ -3,7 +3,7 @@ tasks:
     command: cp .env.example .env
 
   - name: Get Laravel Sail dependencies via docker
-    init: docker run --rm \ -u "$(id -u):$(id -g)" \ -v "$(pwd):/app" -w /app \ composer:2 \ composer install --ignore-platform-reqs
+    init: docker run --rm \-u "$(id -u):$(id -g)" \-v "$(pwd):/app" -w /app \composer:2 \composer install --ignore-platform-reqs
     command: ./vendor/bin/sail up
 
   - name: Generate Laravel app key and storage symlink
