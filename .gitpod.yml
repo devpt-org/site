@@ -3,8 +3,9 @@ tasks:
     init: cp .env.example .env
 
   - name: Get Laravel Sail dependencies via docker
-    #init does not terminate
-    init: docker run --rm \-u "$(id -u):$(id -g)" \-v "$(pwd):/app" -w /app \composer:2 \composer install --ignore-platform-reqs
+    init: |
+      docker run --rm \-u "$(id -u):$(id -g)" \-v "$(pwd):/app" -w /app \composer:2 \composer install --ignore-platform-reqs
+      gp sync-done composer
 
   - name: Execute Laravel Sail
     init: gp sync-await composer
