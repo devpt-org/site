@@ -3,14 +3,15 @@ tasks:
     init: cp .env.example .env
 
   - name: Get Laravel Sail dependencies via docker
-    init: docker run --rm \-u "$(id -u):$(id -g)" \-v "$(pwd):/app" -w /app \composer:2 \composer install --ignore-platform-reqs
+    init: >
+      docker run --rm \-u "$(id -u):$(id -g)" \-v "$(pwd):/app" -w /app \composer:2 \composer install --ignore-platform-reqs
     command: ./vendor/bin/sail up
   
   - name: Run dev
-    before: ./vendor/bin/sail bash
-    init: | 
-      gp sync-await composer
-      php artisan key:generate && php artisan storage:link
+    before: |
+     gp sync-await docker
+     ./vendor/bin/sail bash
+    init: php artisan key:generate && php artisan storage:link
     command: composer install && npm install && npm run dev
 
   #- name: Generate Laravel app key and storage symlink
