@@ -5,7 +5,10 @@ tasks:
   - name: Get Laravel Sail dependencies via docker
     #init does not terminate
     init: docker run --rm \-u "$(id -u):$(id -g)" \-v "$(pwd):/app" -w /app \composer:2 \composer install --ignore-platform-reqs
-    #command: ./vendor/bin/sail up
+
+  - name: Execute Laravel Sail
+    before: gp sync-await docker
+    command: ./vendor/bin/sail up
   
   - name: Run dev
     before: |
