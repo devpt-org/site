@@ -9,7 +9,7 @@ tasks:
 
   - name: Execute Laravel Sail
     init: gp sync-await composer
-    command: (./vendor/bin/sail up &) && gp sync-done sail-up
+    command: ./vendor/bin/sail up -d && gp sync-done sail-up
   
   - name: Run dev
     before: |
