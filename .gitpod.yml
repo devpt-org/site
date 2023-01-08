@@ -1,6 +1,6 @@
 tasks:
-  #- name: Setup .env
-  #  init: cp .env.example .env
+  - name: Setup .env
+    init: cp .env.example .env
 
   - name: Get Laravel Sail dependencies via docker
     init: |
