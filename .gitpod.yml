@@ -15,5 +15,5 @@ tasks:
     before: |
       gp sync-await sail-up
       ./vendor/bin/sail bash
-    init: php artisan key:generate && php artisan storage:link
-    command: composer install && npm install && npm run dev
+    init: sail php artisan key:generate && sail php artisan storage:link
+    command: sail composer install && sail npm install && sail npm run dev
