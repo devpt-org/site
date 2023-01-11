@@ -23,3 +23,9 @@ tasks:
       ./vendor/bin/sail npm install &&
       ./vendor/bin/sail php artisan migrate &&
       ./vendor/bin/sail npm run dev
+
+ports:
+  - port: 5173
+    onOpen: ignore
+    visibility: public
+    name: Vite

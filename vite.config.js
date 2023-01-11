@@ -8,14 +8,12 @@ import { execSync } from 'node:child_process';
 let extendedViteDevServerOptions;
 
 try {
-	const gitpodPortUrl = execSync(`gp url 5173`).toString().trim();
-    const host = new URL(gitpodPortUrl).hostname
+	const gitpodPortUrl = execSync(`gp url ${5173}`).toString().trim();
 
 	extendedViteDevServerOptions = {
-        host,
 		hmr: {
 			protocol: 'wss',
-			host,
+			host: new URL(gitpodPortUrl).hostname,
 			clientPort: 443
 		}
 	};
