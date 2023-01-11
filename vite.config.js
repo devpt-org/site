@@ -9,11 +9,13 @@ let extendedViteDevServerOptions;
 
 try {
 	const gitpodPortUrl = execSync(`gp url 5173`).toString().trim();
+    const host = new URL(gitpodPortUrl).hostname
 
 	extendedViteDevServerOptions = {
+        host,
 		hmr: {
 			protocol: 'wss',
-			host: new URL(gitpodPortUrl).hostname,
+			host,
 			clientPort: 443
 		}
 	};
