@@ -19,7 +19,6 @@ tasks:
       gp sync-done sail-up
 
   - name: Compile JS and CSS, in HMR mode (with Vite Node server)
-    before: gp sync-await sail-up
     command: >
       npm install &&
       npm run dev
