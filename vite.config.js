@@ -18,7 +18,12 @@ try {
 		}
 	};
 } catch {
-	extendedViteDevServerOptions = {};
+	extendedViteDevServerOptions = {
+        hmr: {
+            host: 'foobar.test',
+            // clientPort: 443
+        }
+    };
 }
 
 export default defineConfig({
