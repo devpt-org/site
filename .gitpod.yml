@@ -1,24 +1,25 @@
 tasks:
-  - name: Setup .env
+  - name: Setup .env and public storage folder
     init: >
       cp .env.example .env &&
       sed -i "s|APP_URL=http://localhost|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
-      sed -i "s|APP_URL=https://|APP_URL=https://80-|g" .env
+      sed -i "s|APP_URL=https://|APP_URL=https://80-|g" .env &&
+      ./vendor/bin/sail php artisan key:generate &&
+      ./vendor/bin/sail php artisan storage:link
 
-  - name: Get Laravel Sail dependencies via docker
+  - name: Get Composer dependencies for the first time (we don't have Sail dependencies at this moment, so we use Composer Docker image)
     init: >
       docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
-      gp sync-done composer
+      gp sync-done composer-dependencies
 
   - name: Execute Laravel Sail
-    init: gp sync-await composer
+    init: gp sync-await composer-dependencies
     command: >
       ./vendor/bin/sail up -d &&
       gp sync-done sail-up
 
-  - name: Run dev
+  - name: Compile JS and CSS, in HMR mode (with Vite Node server)
     before: gp sync-await sail-up
-    init: ./vendor/bin/sail php artisan key:generate && ./vendor/bin/sail php artisan storage:link
     command: >
       ./vendor/bin/sail composer install &&
       ./vendor/bin/sail npm install &&
@@ -29,4 +30,4 @@ ports:
   - port: 5173
     onOpen: ignore
     visibility: public
-    name: Vite
+    name: Node Server for Vite
