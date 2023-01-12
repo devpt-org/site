@@ -8,10 +8,10 @@ tasks:
   - name: Setup Sail environment
     init: >
       cp .env.example .env &&
-      sed -i "s#APP_URL=#APP_URL=${GITPOD_WORKSPACE_URL}#g" .env &&
+      sed -i "s#APP_URL=http://localhost#APP_URL=${GITPOD_WORKSPACE_URL}#g" .env &&
       sed -i "s#GITPOD_VITE_URL=#GITPOD_VITE_URL=${GITPOD_WORKSPACE_URL}#g" .env &&
       sed -i "s#APP_URL=https://#APP_URL=https://80-#g" .env &&
-      sed -i "s#GITPOD_VITE_URL=https://#GITPOD_VITE_URL=https://5173-#g" .env &&
+      sed -i "s#GITPOD_VITE_URL=https://#GITPOD_VITE_URL=https://5173-#g" .env
 
 
       sed -i "s#APP_URL=http://localhost#APP_URL=https://80-${GITPOD_WORKSPACE_URL}#g" .env &&
