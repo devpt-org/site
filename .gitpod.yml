@@ -21,10 +21,8 @@ tasks:
   - name: Compile JS and CSS, in HMR mode (with Vite Node server)
     before: gp sync-await sail-up
     command: >
-      ./vendor/bin/sail composer install &&
-      ./vendor/bin/sail npm install &&
-      ./vendor/bin/sail php artisan migrate &&
-      ./vendor/bin/sail npm run dev
+      npm install &&
+      npm run dev
 
 ports:
   - port: 5173
