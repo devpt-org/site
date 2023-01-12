@@ -13,10 +13,6 @@ tasks:
       sed -i "s#APP_URL=https://#APP_URL=https://80-#g" .env &&
       sed -i "s#GITPOD_VITE_URL=https://#GITPOD_VITE_URL=https://5173-#g" .env
 
-
-      sed -i "s#APP_URL=http://localhost#APP_URL=https://80-${GITPOD_WORKSPACE_URL}#g" .env &&
-      sed -i "s#GITPOD_VITE_URL=#GITPOD_VITE_URL=5173-${GITPOD_WORKSPACE_URL}#g" .env
-
   - name: Execute Laravel Sail
     command: >
       gp sync-await composer-dependencies &&
