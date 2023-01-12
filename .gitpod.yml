@@ -1,21 +1,21 @@
 tasks:
-  - name: Setup .env and public storage folder
-    init: >
-      cp .env.example .env &&
-      sed -i "s|APP_URL=http://localhost|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
-      sed -i "s|APP_URL=https://|APP_URL=https://80-|g" .env &&
-      ./vendor/bin/sail php artisan key:generate &&
-      ./vendor/bin/sail php artisan storage:link
-
   - name: Get Composer dependencies for the first time (we don't have Sail dependencies at this moment, so we use Composer Docker image)
     init: >
       docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
       gp sync-done composer-dependencies
 
+  - name: Setup Sail environment
+    init: >
+      cp .env.example .env &&
+      sed -i "s|APP_URL=http://localhost|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
+      sed -i "s|APP_URL=https://|APP_URL=https://80-|g" .env
+
   - name: Execute Laravel Sail
     init: gp sync-await composer-dependencies
     command: >
       ./vendor/bin/sail up -d &&
+      ./vendor/bin/sail php artisan key:generate &&
+      ./vendor/bin/sail php artisan storage:link &&
       gp sync-done sail-up
 
   - name: Compile JS and CSS, in HMR mode (with Vite Node server)
