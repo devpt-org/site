@@ -1,29 +1,18 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
+import vue from '@vitejs/plugin-vue'
+require('dotenv').config()
 
+let extendedViteDevServerOptions = {}
 
-import { execSync } from 'node:child_process';
-
-let extendedViteDevServerOptions;
-
-try {
-	const gitpodPortUrl = execSync(`gp url ${5173}`).toString().trim();
-
-	extendedViteDevServerOptions = {
-		hmr: {
-			protocol: 'wss',
-			host: new URL(gitpodPortUrl).hostname,
-			clientPort: 443
-		}
-	};
-} catch {
-	extendedViteDevServerOptions = {
+if (process.env.GITPOD_VITE_URL) {
+    extendedViteDevServerOptions = {
         hmr: {
-            host: 'foobar.test',
-            // clientPort: 443
+            protocol: 'wss',
+            host: new URL(process.env.GITPOD_VITE_URL).hostname,
+            clientPort: 443
         }
-    };
+    }
 }
 
 export default defineConfig({
@@ -44,4 +33,4 @@ export default defineConfig({
             },
         }),
     ],
-});
+})
