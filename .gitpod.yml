@@ -1,6 +1,7 @@
 tasks:
   - name: Get Composer dependencies for the first time (we don't have Sail dependencies at this moment, so we use Composer Docker image)
     init: >
+      echo "alias sail=./vendor/bin/sail" >> ~/.bash_aliases &&
       docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
       gp sync-done composer-dependencies
 
