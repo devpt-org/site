@@ -21,7 +21,7 @@ tasks:
       ./vendor/bin/sail php artisan storage:link &&
       gp sync-done sail-up
 
-  - name: Compile JS and CSS, in HMR mode (with Vite Node server)
+  - name: Get composer deps
     command: >
       gp sync-await sail-up &&
       ./vendor/bin/sail npm install &&

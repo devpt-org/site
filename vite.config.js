@@ -1,17 +1,16 @@
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
+
 require('dotenv').config()
 
-let extendedViteDevServerOptions = {}
+const extendedViteDevServerOptions = {}
 
 if (process.env.GITPOD_VITE_URL) {
-    extendedViteDevServerOptions = {
-        hmr: {
-            protocol: 'wss',
-            host: new URL(process.env.GITPOD_VITE_URL).hostname,
-            clientPort: 443
-        }
+    extendedViteDevServerOptions.hmr = {
+        protocol: 'wss',
+        host: new URL(process.env.GITPOD_VITE_URL).hostname,
+        clientPort: 443
     }
 }
 
