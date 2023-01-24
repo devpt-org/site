@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name("welcome.index");
+
+Route::get('/links', [LinkController::class, 'index'])->name("links.index");
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
