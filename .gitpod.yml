@@ -1,32 +1,34 @@
 tasks:
-  - name: Setup .env
+  - name: Get Composer dependencies for the first time (we don't have Sail dependencies at this moment, so we use Composer Docker image)
+    init: >
+      echo "alias sail=./vendor/bin/sail" >> ~/.bash_aliases &&
+      docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
+      gp sync-done composer-dependencies
+
+  - name: Setup Sail environment
     init: >
       cp .env.example .env &&
-      sed -i "s|APP_URL=http://localhost|APP_URL=${GITPOD_WORKSPACE_URL}|g" .env &&
-      sed -i "s|APP_URL=https://|APP_URL=https://80-|g" .env
-
-  - name: Get Laravel Sail dependencies via docker
-    init: >
-      docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
-      gp sync-done composer
+      sed -i "s#APP_URL=http://localhost#APP_URL=${GITPOD_WORKSPACE_URL}#g" .env &&
+      sed -i "s#GITPOD_VITE_URL=#GITPOD_VITE_URL=${GITPOD_WORKSPACE_URL}#g" .env &&
+      sed -i "s#APP_URL=https://#APP_URL=https://80-#g" .env &&
+      sed -i "s#GITPOD_VITE_URL=https://#GITPOD_VITE_URL=https://5173-#g" .env
 
   - name: Execute Laravel Sail
-    init: gp sync-await composer
     command: >
+      gp sync-await composer-dependencies &&
       ./vendor/bin/sail up -d &&
+      ./vendor/bin/sail php artisan key:generate &&
+      ./vendor/bin/sail php artisan storage:link &&
       gp sync-done sail-up
 
-  - name: Run dev
-    before: gp sync-await sail-up
-    init: ./vendor/bin/sail php artisan key:generate && ./vendor/bin/sail php artisan storage:link
+  - name: Get composer deps
     command: >
-      ./vendor/bin/sail composer install &&
+      gp sync-await sail-up &&
       ./vendor/bin/sail npm install &&
-      ./vendor/bin/sail php artisan migrate &&
       ./vendor/bin/sail npm run dev
 
 ports:
   - port: 5173
     onOpen: ignore
     visibility: public
-    name: Vite
+    name: Node Server for Vite
