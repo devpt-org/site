@@ -24,11 +24,11 @@ class LinkControllerTest extends TestCase
 
         $this->assertDatabaseCount('links', 0);
 
-        $response = $this->post(route('links.store', [
+        $response = $this->post(route('links.store'), [
             'title' => 'Comunidade devPT',
             'url' => 'https://devpt.co',
             'description' => 'A comunidade de desenvolvedores portugueses',
-        ]));
+        ]);
 
         $this->assertDatabaseCount('links', 1);
         $response->assertStatus(302);
