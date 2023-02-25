@@ -18,8 +18,13 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
          $user = \App\Models\User::factory()->create([
-             'name' => 'Test User',
+             'name' => 'Test User 1',
              'email' => 'test@example.com',
+         ]);
+
+         $user2 = \App\Models\User::factory()->create([
+             'name' => 'Test User 2',
+             'email' => 'test2@example.com',
          ]);
 
          Link::query()->create([
@@ -32,7 +37,7 @@ class DatabaseSeeder extends Seeder
          Link::query()->create([
              'title' => 'Github',
              'url' => 'https://github.com',
-             'user_id' => $user->id,
+             'user_id' => $user2->id,
              'description' => 'The most popular code repository',
          ]);
 
