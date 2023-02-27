@@ -4,7 +4,6 @@ import HeroLogo from '@/Components/HeroLogo.vue'
 import HomepageBenefits from "@/Components/HomepageBenefits.vue";
 import NavBar from '@/Components/NavBar/NavBar.vue'
 
-
 defineProps({
     benefits: Object,
 })
