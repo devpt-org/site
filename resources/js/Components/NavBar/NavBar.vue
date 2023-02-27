@@ -51,7 +51,7 @@
             </a>
         </div>
         <div class="navbar-center">
-            <img class="block lg:hidden h-8 w-auto"  :src="'images/logo-mini-blue.svg'" />
+            <img class="block lg:hidden h-8 w-auto"  src="images/logo-mini-blue.svg" />
         </div>
         <div class="navbar-end">
             <a class="btn btn-ghost btn-circle" href="https://github.com/devpt-org">
