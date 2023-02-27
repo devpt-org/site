@@ -57,7 +57,7 @@
             <a class="btn btn-ghost btn-circle" href="https://github.com/devpt-org">
                 <GitHubIcon width="20" height="20" />
             </a>
-            <a class="btn btn-ghost btn-circle" @click="toggleDark()">
+            <a class="btn btn-ghost btn-circle" @click="toggleDark">
                 <SunIcon v-show="!this.dark" width="20" height="20" />
                 <MoonIcon v-show="this.dark" width="20" height="20" />
             </a>
