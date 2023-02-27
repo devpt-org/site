@@ -35,8 +35,8 @@
     <nav class="navbar lg:px-4">
         <div class="navbar-start">
             <a class="btn btn-ghost normal-case text-lg hidden lg:block" href="/" >
-                <img v-show="this.dark" class="h-8 w-auto" :src="'images/logo-blue-white.svg'" />
-                <img v-show="!this.dark" class="h-8 w-auto" :src="'images/logo-blue.svg'" />
+                <img v-show="this.dark" class="h-8 w-auto" src="images/logo-blue-white.svg" />
+                <img v-show="!this.dark" class="h-8 w-auto" src="images/logo-blue.svg" />
             </a>
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
