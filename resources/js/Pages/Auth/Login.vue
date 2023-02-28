@@ -18,7 +18,7 @@ const form = useForm({
     remember: false,
 });
 
-if(['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
+if(['127.0.0.1', 'localhost'].includes(window.location.hostname) || window.location.hostname.includes('.gitpod.io')) {
     form.email = 'test@example.com'
     form.password = 'password'
 }
