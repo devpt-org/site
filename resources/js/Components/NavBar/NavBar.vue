@@ -34,7 +34,7 @@ export default {
     <nav class="navbar bg-base-100 lg:px-4">
         <div class="navbar-start">
             <a class="btn btn-ghost normal-case text-lg hidden flex lg:flex items-center" href="/">
-                <img class="h-8 w-auto" :src="'images/logo-blue.svg'"/>
+                <img class="h-8 w-auto" src="/images/logo-blue.svg"/>
             </a>
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
