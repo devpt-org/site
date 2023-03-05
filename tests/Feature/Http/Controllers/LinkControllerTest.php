@@ -1,36 +1,25 @@
 <?php
 
-namespace Tests\Feature\Http\Controllers;
+use Inertia\Testing\AssertableInertia;
+use function Pest\Laravel\get;
 
-use Tests\TestCase;
-use App\Models\Link;
-use App\Models\User;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+it('properly displays 8 links on Links page', function () {
+    $user = user()->create();
 
-class LinkControllerTest extends TestCase
-{
-    use RefreshDatabase;
+    links()->count(10)->create(['user_id' => $user->id]);
+    
+    actingAs($user)
+        ->get(route('links.index'))
+        ->AssertOK()
+        ->assertDontSee('@inertia')
+        ->assertInertia(fn (AssertableInertia $page) => $page
+            ->component('Links/Index')
+            ->has('links', 8)
+        );
+});
 
-    /**
-     * Should list links in an Inertia page coming from the database.
-     *
-     * @return void
-     */
-    public function test_should_list_links()
-    {
-        $user = User::factory()->create();
-        Link::factory()->create(['user_id' => $user->id]);
-        Link::factory()->create(['user_id' => $user->id]);
-
-        $this->actingAs($user);
-        
-        $this->assertDatabaseCount('links', 2);
-
-        $this->get('/links')
-            ->assertInertia(fn ($page) => $page
-                ->component('Links/Index')
-                ->has('links', 2)
-            );
-    }
-}
+test('guests cannot list links', function () {
+    get(route('links.index'))
+        ->assertStatus(302)
+        ->assertRedirect(route('login'));
+});
