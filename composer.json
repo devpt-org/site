@@ -40,7 +40,11 @@
             "Tests\\": "tests/"
         }
     },
+    "scripts-descriptions": {
+        "test": "Run tests in random order via Pest PHP"
+    },
     "scripts": {
+        "test": "./vendor/bin/pest --order-by random",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
