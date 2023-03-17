@@ -1,5 +1,7 @@
 tasks:
   - name: Get Composer dependencies for the first time (we don't have Sail dependencies at this moment, so we use Composer Docker image)
+    # Fix because of https://github.com/gitpod-io/gitpod/issues/16614
+    before: sudo curl -o /usr/local/bin/docker-compose -fsSL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-$(uname -m)
     init: >
       echo "alias sail=./vendor/bin/sail" >> ~/.bash_aliases &&
       docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
@@ -32,3 +34,18 @@ ports:
     onOpen: ignore
     visibility: public
     name: Node Server for Vite
+
+# Configure vscode
+vscode:
+  extensions:
+    - bmewburn.vscode-intelephense-client
+    - eamodio.gitlens
+    - ikappas.composer
+    - ms-azuretools.vscode-docker
+    - ecmel.vscode-html-css
+    - MehediDracula.php-namespace-resolver
+    - wmaurer.change-case
+    - Equinusocio.vsc-community-material-theme
+    - EditorConfig.EditorConfig
+    - streetsidesoftware.code-spell-checker
+    - rangav.vscode-thunder-client
