@@ -1,9 +1,10 @@
 tasks:
   - name: Get Composer dependencies for the first time (we don't have Sail dependencies at this moment, so we use Composer Docker image)
     # Fix because of https://github.com/gitpod-io/gitpod/issues/16614
-    before: sudo curl -o /usr/local/bin/docker-compose -fsSL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-$(uname -m)
+    before: |
+      sudo curl -o /usr/local/bin/docker-compose -fsSL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-$(uname -m)
+      echo "alias dc=docker-compose" >> ~/.bash_aliases
     init: >
-      echo "alias sail=./vendor/bin/sail" >> ~/.bash_aliases &&
       docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
       gp sync-done composer-dependencies
 
@@ -18,16 +19,15 @@ tasks:
   - name: Execute Laravel Sail
     command: >
       gp sync-await composer-dependencies &&
-      ./vendor/bin/sail up -d &&
-      ./vendor/bin/sail php artisan key:generate &&
-      ./vendor/bin/sail php artisan storage:link &&
+      docker-compose up -d &&
+      docker-compose exec app bash -c "php artisan key:generate && php artisan storage:link" &&
       gp sync-done sail-up
 
   - name: Get composer deps
     command: >
       gp sync-await sail-up &&
-      ./vendor/bin/sail npm install &&
-      ./vendor/bin/sail npm run dev
+      npm install &&
+      npm run dev
 
 ports:
   - port: 5173
