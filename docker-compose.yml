@@ -4,7 +4,9 @@ services:
     app:
         image: serversideup/php:8.2-fpm-nginx
         environment:
-            - SSL_MODE=off
+            PUID: "${USERID:-33333}"
+            PGID: "${GROUPID:-33333}"
+            SSL_MODE: "off"
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -17,7 +19,6 @@ services:
         depends_on:
             - mysql
             - redis
-            - mailhog
             - selenium
     mysql:
         image: 'mysql/mysql-server:8.0'
@@ -51,13 +52,6 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
-    mailhog:
-        image: 'mailhog/mailhog:latest'
-        ports:
-            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
-            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
-        networks:
-            - sail
     selenium:
         image: 'selenium/standalone-chrome'
         extra_hosts:
