@@ -4,17 +4,15 @@ tasks:
     before: |
       sudo curl -o /usr/local/bin/docker-compose -fsSL https://github.com/docker/compose/releases/download/v2.16.0/docker-compose-linux-$(uname -m)
       echo "alias dc=docker-compose" >> ~/.bash_aliases
-    init: >
-      docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs &&
+    init: |
+      docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/app" -w /app composer:2 composer install --ignore-platform-reqs
       gp sync-done composer-dependencies
 
   - name: Setup Sail environment
-    init: >
-      cp .env.example .env &&
-      sed -i "s#APP_URL=http://localhost#APP_URL=${GITPOD_WORKSPACE_URL}#g" .env &&
-      sed -i "s#GITPOD_VITE_URL=#GITPOD_VITE_URL=${GITPOD_WORKSPACE_URL}#g" .env &&
-      sed -i "s#APP_URL=https://#APP_URL=https://80-#g" .env &&
-      sed -i "s#GITPOD_VITE_URL=https://#GITPOD_VITE_URL=https://5173-#g" .env
+    init: |
+      cp .env.example .env
+      sed -i "s#APP_URL=http://localhost#APP_URL=$(gp url 80)#g" .env
+      sed -i "s#GITPOD_VITE_URL=#GITPOD_VITE_URL=$(gp url 5174)#g" .env
 
   - name: Execute Laravel Sail
     command: >
@@ -30,16 +28,15 @@ tasks:
       npm run dev
 
 ports:
-  - port: 5173
+  - port: 5174
     onOpen: ignore
     visibility: public
-    name: Node Server for Vite
+    name: Vite Server
 
 # Configure vscode
 vscode:
   extensions:
     - bmewburn.vscode-intelephense-client
-    - eamodio.gitlens
     - ikappas.composer
     - ms-azuretools.vscode-docker
     - ecmel.vscode-html-css
