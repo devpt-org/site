@@ -1,6 +1,6 @@
 ### devPT
 
-[Canal Youtube](https://www.youtube.com/@devpt4252)
+[Canal Youtube](https://www.youtube.com/@devPTorg)
 
 ## Requisitos para desenvolvimento
 
