@@ -27,3 +27,11 @@ defineProps({
         </section>
     </MainLayout>
 </template>
+
+<style>
+
+    body {
+        @apply bg-white dark:bg-zinc-800 text-black dark:text-white;
+    }
+
+</style>
