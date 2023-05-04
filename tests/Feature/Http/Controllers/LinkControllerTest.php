@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
+use App\Models\Link;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,25 +13,24 @@ class LinkControllerTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Should add a link to the database.
+     * Should list links in an Inertia page coming from the database.
      *
      * @return void
      */
-    public function test_should_add_link_to_database()
+    public function test_should_list_links()
     {
         $user = User::factory()->create();
+        Link::factory()->create(['user_id' => $user->id]);
+        Link::factory()->create(['user_id' => $user->id]);
 
         $this->actingAs($user);
+        
+        $this->assertDatabaseCount('links', 2);
 
-        $this->assertDatabaseCount('links', 0);
-
-        $response = $this->post(route('links.store'), [
-            'title' => 'Comunidade devPT',
-            'url' => 'https://devpt.co',
-            'description' => 'A comunidade de desenvolvedores portugueses',
-        ]);
-
-        $this->assertDatabaseCount('links', 1);
-        $response->assertStatus(302);
+        $this->get('/links')
+            ->assertInertia(fn ($page) => $page
+                ->component('Links/Index')
+                ->has('links', 2)
+            );
     }
 }

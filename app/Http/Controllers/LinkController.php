@@ -19,26 +19,4 @@ class LinkController extends Controller
             'links' => $links,
         ]);
     }
-
-    public function create() {
-        return inertia('Links/Create');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'url' => 'required|url',
-        ]);
-
-        Link::create([
-            'user_id' => auth()->id(),
-            'title' => $request->title,
-            'description' => $request->description,
-            'url' => $request->url,
-        ]);
-
-        return Redirect::route('links.index');
-    }
 }
