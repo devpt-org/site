@@ -1,34 +1,27 @@
 <script>
-    import GitHubIcon from '@/Components/Svg/GitHubIcon.vue';
-    import SunIcon from '@/Components/Svg/SunIcon.vue';
-    import MoonIcon from '@/Components/Svg/MoonIcon.vue';
-    import HamburgerIcon from '@/Components/Svg/HamburgerIcon.vue';
-    import { useDark, useToggle } from '@vueuse/core';
+import GitHubIcon from '@/Components/Svg/GitHubIcon.vue';
+import SunIcon from '@/Components/Svg/SunIcon.vue';
+import MoonIcon from '@/Components/Svg/MoonIcon.vue';
+import HamburgerIcon from '@/Components/Svg/HamburgerIcon.vue';
+import { useDark, useToggle } from '@vueuse/core';
 
-    const isDark = useDark();
-    const toggleDark = useToggle(isDark);
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 
-    export default {
-        data() {
-            return {
-                links: [
-                    { name: 'Artigos', url: '/blog' },
-                    { name: 'Links', url: '/links' },
-                    { name: 'Discord', url: 'https://discord.gg/52apEBYQb2' },
-                    { name: 'Reddit', url: 'https://reddit.com/r/devpt/' }
-                ],
-                dark: isDark
-            }
-        },
-        methods: {
-            toggleDark
-        },
-        components: {
-            GitHubIcon,
-            SunIcon,
-            MoonIcon,
-            HamburgerIcon
+export default {
+    data() {
+        return {
+            links: [
+                { name: 'Artigos', url: '/blog' },
+                { name: 'Links', url: '/links' },
+                { name: 'Discord', url: 'https://discord.gg/52apEBYQb2' },
+                { name: 'Reddit', url: 'https://reddit.com/r/devpt/' }
+            ],
+            dark: isDark
         }
+    },
+    methods: {
+        toggleDark
     },
     components: {
         GitHubIcon,
