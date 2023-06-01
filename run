@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Inspired on https://github.com/adriancooney/Taskfile
+
+set -e
+
+function help {
+    echo "$0 <task> <args>"
+    echo "Tasks:"
+    compgen -A function | cat -n
+}
+function default {
+    help
+}
+function start {
+    bash scripts/spin up -d
+}
+function logs {
+    bash scripts/spin logs -f
+}
+function mfs { # migrate-fresh-seed
+    bash scripts/spin exec -u webuser webapp php artisan migrate:fresh --seed
+}
+function webapp {
+    bash scripts/spin exec -u webuser webapp bash
+}
+function root-webapp {
+    bash scripts/spin exec webapp bash
+}
+
+TIMEFORMAT="Task completed in %3lR"
+time "${@:-default}"
