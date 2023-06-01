@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  webapp:
+    image: he4rt/blood-donation
+    build:
+      context: .
+      dockerfile: ./docker/dev-ssu/Dockerfile
+    ports:
+      - "${APP_PORT:-80}:80"
+    environment:
+      PUID: "${USERID:-1000}"
+      PGID: "${GROUPID:-1000}"
+      SSL_MODE: "off"
+      AUTORUN_LARAVEL_STORAGE_LINK: "false"
+      AUTORUN_LARAVEL_MIGRATION: "false"
+    volumes:
+      - .:/var/www/html
+  postgres:
+    ports:
+      - "${FORWARD_DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_DATABASE}"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - postgres:/var/lib/postgresql/data
