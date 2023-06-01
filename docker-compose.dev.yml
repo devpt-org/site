@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   webapp:
-    image: he4rt/blood-donation
+    image: devpt-org/site
     build:
       context: .
       dockerfile: ./docker/dev-ssu/Dockerfile
