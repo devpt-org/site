@@ -15,7 +15,8 @@ export default {
                 { name: 'Artigos', url: '/blog' },
                 { name: 'Links', url: '/links' },
                 { name: 'Discord', url: 'https://discord.gg/52apEBYQb2' },
-                { name: 'Reddit', url: 'https://reddit.com/r/devpt/' }
+                { name: 'Reddit', url: 'https://reddit.com/r/devpt/' },
+                { name: 'Lemmy', url: 'https://lemmy.pt/c/DevPT' }
             ],
             dark: isDark
         }
