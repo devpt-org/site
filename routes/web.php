@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrequentlyAskedQuestionsController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -18,6 +19,8 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name("welcome.index");
+
+Route::get('/perguntas-frequentes', FrequentlyAskedQuestionsController::class)->name("list_faqs");
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
