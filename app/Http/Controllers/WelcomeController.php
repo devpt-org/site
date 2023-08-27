@@ -30,12 +30,13 @@ class WelcomeController extends Controller
             ],
             [
                 "type" => "image",
-                "url"=> asset('resources/hiking.svg'),
-                "class"=> "w-40",
-            ],[
+                "url" => asset('resources/hiking.svg'),
+                "class" => "w-40 mx-auto",
+            ],
+            [
                 "type" => "image",
-                "url"=> asset("resources/nature.svg"),
-                "class"=> "w-40 md:w-auto h-32",
+                "url" => asset("resources/nature.svg"),
+                "class" => "w-40 md:w-auto hidden md:block mx-auto",
             ],
             [
                 "type" => "text",

@@ -12,6 +12,10 @@ module.exports = {
         './resources/js/**/*.vue',
     ],
 
+    safelist: [
+        'md:block'
+    ],
+
     theme: {
         extend: {
             fontFamily: {

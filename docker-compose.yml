@@ -1,18 +1,28 @@
 version: '3.8'
-services:
-    webapp:
-        working_dir: /var/www/html
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        networks:
-            - web
 
-    postgres:
-        image: postgres:15-alpine
-        networks:
-            - web
-volumes:
-    postgres:
-networks:
-    web:
-        driver: bridge
+services:
+  webapp:
+    image: devpt-org/site
+    build:
+      context: .
+      dockerfile: ./docker/dev-ssu/Dockerfile
+    ports:
+      - "${APP_PORT:-80}:80"
+      - "${VITE_PORT:-5173}:5173"
+    environment:
+      PUID: "${USERID:-1000}"
+      PGID: "${GROUPID:-1000}"
+      SSL_MODE: "off"
+      AUTORUN_LARAVEL_STORAGE_LINK: "false"
+      AUTORUN_LARAVEL_MIGRATION: "false"
+    volumes:
+      - .:/var/www/html
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "${FORWARD_DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_USER: "${DB_USERNAME}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+      POSTGRES_DB: "${DB_DATABASE}"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
