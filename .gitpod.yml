@@ -18,7 +18,7 @@ tasks:
     command: >
       gp sync-await composer-dependencies &&
       docker-compose up -d &&
-      docker-compose exec app bash -c "php artisan key:generate && php artisan storage:link" &&
+      docker-compose exec webapp bash -c "php artisan key:generate && php artisan storage:link" &&
       gp sync-done sail-up
 
   - name: Get composer deps
