@@ -10,7 +10,7 @@ tasks:
 
   - name: Setup Sail environment
     init: |
-      cp .env.example .env
+      cp .env.gitpod .env
       sed -i "s#APP_URL=http://localhost#APP_URL=$(gp url 8080)#g" .env
       sed -i "s#GITPOD_VITE_URL=#GITPOD_VITE_URL=$(gp url 5173)#g" .env
 
