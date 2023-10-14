@@ -24,8 +24,7 @@ tasks:
   - name: Get composer deps
     command: >
       gp sync-await sail-up &&
-      npm install &&
-      npm run dev
+      docker-compose exec webapp bash -c "npm install && npm run dev"
 
 ports:
   - port: 5174
