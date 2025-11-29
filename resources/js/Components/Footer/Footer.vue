@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full text-left p-4 pin-b text-xs bg-sky-600 text-white font-bold">
+    <div class="w-full text-left p-4 text-xs bg-sky-600 text-white font-bold">
         <p>
             made with ♡
             <a

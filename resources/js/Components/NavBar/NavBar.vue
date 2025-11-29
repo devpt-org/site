@@ -12,9 +12,7 @@ export default {
     data() {
         return {
             links: [
-                { name: 'Artigos', url: '/blog' },
                 { name: 'Perguntas Frequentes', url: '/perguntas-frequentes' },
-                { name: 'Links', url: '/links' },
                 { name: 'Discord', url: 'https://discord.gg/52apEBYQb2' },
                 { name: 'Reddit', url: 'https://reddit.com/r/devpt/' },
                 { name: 'Lemmy', url: 'https://lemmy.pt/c/DevPT' }
@@ -68,4 +66,3 @@ export default {
         </div>
     </nav>
 </template>
-

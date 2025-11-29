@@ -7,7 +7,11 @@
 
 <template>
     <Head title="devPT - Comunidade de Developers Portugueses"/>
-    <NavBar />
-    <slot />
-    <Footer />
+    <div class="min-h-screen flex flex-col bg-white dark:bg-zinc-800 text-black dark:text-white">
+        <NavBar />
+        <main class="flex-1 w-full">
+            <slot />
+        </main>
+        <Footer />
+    </div>
 </template>
